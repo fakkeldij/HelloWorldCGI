@@ -13,7 +13,7 @@ variables:
   
   environmentName: 'CGIHelloWorldWebAPP'
 
-  vmImageName: 'windows latest'
+  vmImageName: 'ubuntu latest'
 
 stages:
 - stage: Build
@@ -28,8 +28,16 @@ stages:
     - task: Maven@3
       displayName: 'Maven Package'
 
-      inputs:
-        mavenPomFile: 'pom.xml'
+      inputs: 
+              mavenPomFile: 'pom.xml'
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              javaHomeOption: 'JDKVersion'
+              mavenVersionOption: 'Default'
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: false
+       
       
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
@@ -62,11 +70,5 @@ stages:
               WebAppName: 'CGIHelloWorldWebAPP'
               packageForLinux: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
           
-          - task: VSTest@2
-            inputs:
-              testSelector: 'testAssemblies'
-              testAssemblyVer2: |
-                **\*test*.dll
-                !**\*TestAdapter.dll
-                !**\obj\**
-              searchFolder: '$(System.DefaultWorkingDirectory)'
+
+
