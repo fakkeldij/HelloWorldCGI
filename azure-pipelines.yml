@@ -67,7 +67,7 @@ stages:
               azureSubscription: 'Azure subscription 1(a1e74730-a9e8-4b13-94dd-ea6bc12a85dc)'
               appType: 'webAppLinux'
               WebAppName: 'CGIHelloWorldWebAPP'
-              packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
+              packageForLinux: '$(Pipeline.Workspace)/drop/**/*.?(war|jar)'
               RuntimeStack: 'JAVA|17-java17'
 
 
