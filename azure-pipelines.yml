@@ -25,21 +25,12 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - task: Maven@4
+    - task: Maven@3
+      displayName: 'Maven Package'
+
       inputs:
         mavenPomFile: 'pom.xml'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: false
-    
-    - task: MavenAuthenticate@0
-      inputs:
-        artifactsFeeds: 'DevOpsCGIHelloWorld'
-        
+      
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
@@ -66,11 +57,8 @@ stages:
           steps:
           - task: AzureRmWebAppDeployment@4
             inputs:
-              ConnectionType: 'AzureRM'
               azureSubscription: 'Azure subscription 1(a1e74730-a9e8-4b13-94dd-ea6bc12a85dc)'
               appType: 'webAppLinux'
               WebAppName: 'CGIHelloWorldWebAPP'
               packageForLinux: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
-              RuntimeStack: 'JAVA|17-java17'
-
-
+  
