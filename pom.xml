@@ -3,6 +3,8 @@
   <groupId>HelloWorldCGI</groupId>
   <artifactId>HelloWorldCGI</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>helloworld Maven Webapp</name>  
+  <url>http://maven.apache.org</url>  
   <packaging>war</packaging>
   
   <dependencies>
@@ -14,10 +16,15 @@
     <version>4.0.1</version>
     <scope>provided</scope>
     </dependency>
-
+    <dependency> 
+      <groupId>junit</groupId>  
+      <artifactId>junit</artifactId>  
+      <version>3.8.1</version>  
+      <scope>test</scope> 
+    </dependency> 
   </dependencies>
     <build>
-<finalName>some_name</finalName>
+<finalName>HelloWorld</finalName>
 <pluginManagement>
   <plugins>
     <plugin>
@@ -32,3 +39,4 @@
 </pluginManagement>
     </build>
 </project>
+
