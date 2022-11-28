@@ -61,4 +61,12 @@ stages:
               appType: 'webAppLinux'
               WebAppName: 'CGIHelloWorldWebAPP'
               packageForLinux: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
-  
+          
+          - task: VSTest@2
+            inputs:
+              testSelector: 'testAssemblies'
+              testAssemblyVer2: |
+                **\*test*.dll
+                !**\*TestAdapter.dll
+                !**\obj\**
+              searchFolder: '$(System.DefaultWorkingDirectory)'
