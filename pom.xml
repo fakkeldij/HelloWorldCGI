@@ -12,5 +12,18 @@
     <scope>provided</scope>
     </dependency>
   </dependencies>
-
+  <build>
+<finalName>some_name</finalName>
+<pluginManagement>
+  <plugins>
+    <plugin>
+      <artifactId>maven-war-plugin</artifactId>
+      <version>3.2.2</version>
+    <configuration>
+        <failOnMissingWebXml>false</failOnMissingWebXml>    
+    </configuration>
+    </plugin>
+  </plugins>
+</pluginManagement>
+    </build>
 </project>
