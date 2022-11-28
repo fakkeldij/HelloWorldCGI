@@ -13,7 +13,7 @@ variables:
   
   environmentName: 'CGIHelloWorldWebAPP'
 
-  vmImageName: 'ubuntu latest'
+  vmImageName: 'windows latest'
 
 stages:
 - stage: Build
