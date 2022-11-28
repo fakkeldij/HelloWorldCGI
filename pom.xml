@@ -13,7 +13,7 @@
     </dependency>
   </dependencies>
   <build>
-<finalName>some_name</finalName>
+<finalName>HelloWorld</finalName>
 <pluginManagement>
   <plugins>
     <plugin>
