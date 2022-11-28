@@ -28,7 +28,9 @@ stages:
       displayName: MavenPackage
       inputs:
         mavenPomFile: 'pom.xml'
-    
+    - task: MavenAuthenticate@0
+      inputs:
+        artifactsFeeds: 'DevOpsCGIHelloWorld'
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
