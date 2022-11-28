@@ -25,13 +25,21 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - task: Maven@3
-      displayName: MavenPackage
-      inputs:
-        mavenPomFile: 'pom.xml'
+    - task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+
     - task: MavenAuthenticate@0
       inputs:
         artifactsFeeds: 'DevOpsCGIHelloWorld'
+        
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
@@ -61,3 +69,5 @@ stages:
               WebAppName: 'CGIHelloWorldWebAPP'
               packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
               RuntimeStack: 'JAVA|17-java17'
+
+
