@@ -35,7 +35,6 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory'
         contents: '**/target/*.?(war|jar)'
         targetFolder: '$(build.artifactStagingDirectory)'
     - upload: $(build.artifactStagingDirectory)
