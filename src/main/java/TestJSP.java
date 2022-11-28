@@ -7,13 +7,16 @@
 	import org.openqa.selenium.By;
 	import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.firefox.FirefoxDriver;
+	
+		
 public class TestJSP {
 
 	private static FirefoxDriver driver;
 	WebElement element;
 
 	@BeforeClass
-	public static void openBrowser(){
+	@Test
+	public static void TestOpenBrowser(){
 	driver = new FirefoxDriver(); //Initialising the browser driver
 //	browser = webdriver.Chrome(executable_path="./drivers/chromedriver")
 	driver.get("https://trendoceans.com");
