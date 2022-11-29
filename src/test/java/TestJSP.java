@@ -2,16 +2,16 @@ import org.junit.AfterClass;
 
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+//import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
+//import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +37,7 @@ public class TestJSP {
 				driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 				driver.get("https://cgihelloworldwebapp.azurewebsites.net/HelloWorldCGI.jsp");
-				assertEquals("Hello World", driver.getTitle());
+				Assert.assertEquals("Hello World", driver.getTitle());
 			    
 				driver.quit();
 				
