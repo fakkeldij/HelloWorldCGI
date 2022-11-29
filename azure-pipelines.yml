@@ -49,24 +49,3 @@ stages:
     - upload: $(build.artifactStagingDirectory)
       artifact: drop
 
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  condition: succeeded()
-  jobs:
-  - deployment: DeployLinuxWebApp
-    displayName: Deploy Linux Web App
-    environment: $(environmentName)
-    pool: 
-      vmImage: $(vmImageName)
-    strategy: 
-      runOnce: 
-        deploy:
-          steps:
-          - task: AzureRmWebAppDeployment@4
-            inputs:
-              azureSubscription: 'Azure subscription 1(a1e74730-a9e8-4b13-94dd-ea6bc12a85dc)'
-              appType: 'webAppLinux'
-              WebAppName: 'CGIHelloWorldWebAPP'
-              packageForLinux: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
-          
