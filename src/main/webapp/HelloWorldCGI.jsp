@@ -4,7 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Hello World</title>
+
+<title>Insert title here</title>
+
 </head>
 <body>
 <%="Hello world" %>
