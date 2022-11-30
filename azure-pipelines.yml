@@ -46,6 +46,24 @@ stages:
         contents: '**/target/*.?(war|jar)'
         targetFolder: '$(build.artifactStagingDirectory)'
 
-    - upload: $(build.artifactStagingDirectory)
-      artifact: drop
 
+- stage: PreDeployment
+  jobs:
+    - job: Code_Validation
+      steps:
+      - checkout: self
+        clean: true
+        fetchDepth: 1
+      - script: |
+          docker pull github/super-linter:latest    
+        displayName: Pull github/super-linter docker image
+      - script: |
+          docker run \
+            -e RUN_LOCAL=true \
+            -e VALIDATE_ARM=true \
+            -v $(System.DefaultWorkingDirectory):/tmp/lint \
+            github/super-linter
+        displayName: super-linter validation
+
+      - task: PublishBuildArtifacts@1
+   
